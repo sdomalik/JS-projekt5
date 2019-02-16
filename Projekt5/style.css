@@ -1,0 +1,22 @@
+.note{
+    width: 20%;
+    height: 250px;
+    background-color: yellow;   
+    border:2px solid red; 
+}
+#NotesContainer{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: blue;
+    width: 100%;
+}
+.note-title{
+    font-size: 20px;
+    text-align: center;
+    font-style: oblique;
+    font-weight: bold;
+
+}
+.note-content{
+    
+}
