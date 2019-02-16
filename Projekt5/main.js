@@ -31,13 +31,18 @@ function addNotesToNotesContainer(note){
     const noteDateTime = new Date(note.id).toUTCString()
 
     let noteDiv = document.createElement('div')
+
     noteDiv.classList.add('note');
     document.getElementById('NotesContainer').appendChild(noteDiv);
     noteDiv.innerHTML =`\
     <div class="note-title">${note.title}</div>\
     <div class="note-content">${note.content}</div>\
+    <div class="mini ui buttons note-buttons ">
+    <button class="ui button "><i class="trash alternate icon"></i></button>/
+    <button class="ui button"><i class="exchange icon"></i></button>/
+    <button class="ui button"><i class="paint brush icon"></i></button>/
+    </div>
     <div class="note-date">${noteDateTime}</div>\
-    
     `
 
 }
