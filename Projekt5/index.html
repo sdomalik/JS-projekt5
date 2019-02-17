@@ -9,9 +9,11 @@
     <link rel="stylesheet" type="text/css" media="screen" href="style.css">
 </head>
 <body>
-    <input type="text" id="NewNoteName">
-    <textarea name="NewNoteContent" id="NewNoteContent" cols="30" rows="10"></textarea>
-    <button id="NewNoteSubmit">Submit</button>
+    <div class="inputContainer">
+        <input type="text" id="NewNoteName" placeholder="Title...">
+        <textarea name="NewNoteContent" id="NewNoteContent" placeholder="Content..." cols="30" rows="10"></textarea>
+        <button class="ui button"id="NewNoteSubmit">Add new note</button>
+    </div>
     <div id="NotesContainer"></div>
 </body>
 <script 
