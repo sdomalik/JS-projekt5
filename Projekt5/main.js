@@ -8,7 +8,8 @@ function appStart() {
 
     notes = JSON.parse(localStorage.getItem('notes')) || []
     notes.forEach(note => {
-        addNotesToNotesContainer(note)
+        if(note != null)
+            addNotesToNotesContainer(note);
     });
 }
 //if there is title or content note is added to notes array with parameters
@@ -39,15 +40,15 @@ function addNotesToNotesContainer(note) {
     <div class="note-title">${note.title}</div>\
     <div class="note-content">${note.content}</div>\
     <div class="mini ui buttons note-buttons ">
-        <button id="delete" class="ui button delete-button "><i class="trash alternate icon"></i></button>/
+        <button class="ui button delete-button "><i class="trash alternate icon"></i></button>/
         <button class="ui button pinToTop-button"><i class="exchange icon"></i></button>/
         <button class="ui button changeColor-button"><i class="paint brush icon"></i></button>/
     </div>
     <div class="note-date">${noteDateTime}</div>\
     `
-    note.div = noteDiv
+    
     noteDiv.children[2].children[0].addEventListener('click', e => deleteNote(note, noteDiv))
-    noteDiv.children[2].children[1].addEventListener('click', e => pinToTop(note))
+    noteDiv.children[2].children[1].addEventListener('click', e => pinToTop(notes.indexOf(note)))
     noteDiv.children[2].children[2].addEventListener('click', e => changeColor(noteDiv))
 
 
@@ -57,24 +58,31 @@ function addNotesToNotesContainer(note) {
 //deletes note from array and note div from container and reload local storage
 function deleteNote(note, noteDiv) {
     notes.pop(this.note);
+    document.querySelector('#NotesContainer').removeChild(noteDiv);
     updateLocalStorage();
-    document.getElementById('NotesContainer').removeChild(noteDiv);
 
 
 }
 
-function pinToTop(note) {
-
-
+//put note to the top of the list
+function pinToTop(fromIndex) {
+    let element = notes[fromIndex];
+    notes.splice(fromIndex, 1);
+    notes.splice(0, 0, element);
+    document.getElementById('NotesContainer').innerHTML = "";
+    notes.forEach(note => {
+        if(note != null)
+            addNotesToNotesContainer(note);
+    });
 }
 
 //sets background of note div
 function changeColor(noteDiv) {
-    if (noteDiv.style.background == "yellow") {
+    if (noteDiv.style.background == "palegoldenrod") {
         noteDiv.style.background = "red";
     }
-    else 
-        noteDiv.style.background = "yellow";
+    else
+        noteDiv.style.background = "palegoldenrod";
 }
 
 function updateLocalStorage() {
